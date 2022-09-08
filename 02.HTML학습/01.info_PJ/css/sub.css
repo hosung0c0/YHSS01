@@ -64,6 +64,223 @@
     /* 가로크기 w100p(width 100퍼센트) */
     /* width: 100%; */
 }
+/* 기사이미지 설명글 samll */
+.afig small{
+    /* 글자체 ff */
+    font-family: gulim;
+    /* 글자색 */
+    color: #555;
+}
 /* 2-4. 기사내용 */
+.arti p{
+    /* 글자체 ff */
+    font-family: "Nanum Gothic", "굴림";
+    /* 글자크기 fz */
+    font-size: 18px;
+    /* 줄간격 lh */
+    line-height: 1.6;
+    /* 패딩양쪽 */
+    padding: 0 10px;
+
+}
+
+/* 중간 글자표시박스 변경 */
+
+.arti mark {
+    /* 인라인을 블록으로 전환! */
+    display: block;
+    /* 배경색 */
+    background-color: #efe7e7;
+    /* 글자중앙정렬 */
+    text-align: center;
+    /* 줄간격 */
+    line-height: 3;
+    /* 글자체 */
+    font-family: 'Nanum Gothic';
+    /* 글자크기 */
+    font-size: 20px;
+    /* 글자두께 */
+    font-weight: bold;
+    /* 보더 위 */
+    border-top: 2px solid grey;
+    /* 보더 아래 */
+    border-bottom: 2px solid #d3cfcf;
+}
+
+.arti i{
+    /* 글자스타일 노멀 fsn */
+    font-style: namal;
+    /* 글자 두껍게 fwb */
+    font-weight: bold;
+}
+
+/* q요소 변경 */
+.arti q{
+    /* 글자색 c */
+    color: darkslateblue;
+    /* ctrl+spacebar 하면 색 고를 수 있음 */
+}
+
+/* del요소 변경 */
+.arti del{
+    /* 글자색 c */
+    color: lightpink;
+}
+
 /* 2-5. 기자정보 */
+.rinfo{
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 /* 2-6. 기사원문 */
+.org a{
+    /* 패딩 p */
+    padding: 10px;
+    /* 글자크기 */
+    font-size: 20px;
+    /* 글자색 c */
+    color: rgb(80, 49, 255);
+    /* 글자밑줄없앰 tdn */
+    text-decoration: none;
+    /* 보더 bd */
+    border: 1px dashed rgb(125, 89, 255);
+}
+
+/* 공통박스  article */
+.main article{
+    border-top: 2px dashed #ccc;
+    /* 마진위 mt */
+    margin-top: 40px;
+    /* 패딩 p */
+    padding: 15px;
+}
+
+/* 공통 타이틀 h3 */
+.main h3{
+    /* 글자체 ff - 웹폰트적용 */
+    font-family: 'Black And White Picture', sans-serif;
+    /* 글자두께 얇게 fwn */
+    font-weight: normal;
+    /* 글자크기 fz */
+    font-size: 26px;
+    /* 패딩왼쪽 pl */
+    padding-left: 20px;
+}
+
+/* 블록 인용구 박스 */
+.bquote blockquote{
+    /* 마진없앰 m0 */
+    margin: 0;
+    /* 패딩 p */
+    padding: 5px;
+    /* float설정으로 망가진
+    부모박스는 overflow:hidden으로
+    막아준다(자식의 크기인식 */
+    overflow: hidden;
+
+    /* 글자설정 */
+    /* font: 스두크/줄체 */
+    font: 17px/1.7 'Nanum Gothic';
+    /* 글자정렬 ta */
+    text-align: justify;
+    /* justify 양쪽정렬 */
+
+    /* 들여쓰기 ti */
+    text-indent: 20px;
+}
+
+/* 블록인용박스 내 이미지 */
+.bquote img{
+    /* 이미지는 왼쪽에 글자는
+    오른쪽으로 흘러가게 설정 */
+    float: left;
+    /* 
+    float속성
+    - 인라인요소에서 사용하면
+    선택된 요소의 위치를 잡고
+    그 왼쪽이나 오른쪽으로 다른
+    컨텐츠가 흘러가게 한다
+    - 특히 이미지에서 글자를 
+    오른쪽이나 왼쪽으로 흘러가게함
+    - 기본적으로 이미지하단에 
+    한줄만 글자가 흘러가게 되어있음
+    (블록에서 float은 별도로 다룸)
+    
+    -> 값에 따라
+    left - 나는 왼쪽 다른건
+    오른쪽으로 흘러감
+    right - 나는 오른쪽 다른건
+    왼쪽으로 흘러감
+    (인라인요소를 오른쪽 끝으로
+    보낼 때도 사용함) */
+    
+    /* 둥근모서리 brad */
+    border-radius: 5px;
+    
+    /* 오른쪽마신 mr */
+    margin-right: 15px;  
+}
+
+/* 주해박스 */
+/* .desc 앞에 .main부모를 쓴 이유?
+기존 셋팅 .main article에서 설정한
+값이 우선하기 때문에 이것 보다
+우선하도록 상위 부모를 씀 */
+.main .desc{
+    /* 보더 하단 bdb */
+    border-bottom: 2px dashed #ccc;
+    /* 패딩 하단 pb */
+    padding-bottom: 10px;
+    /* 마진 하단 mb */
+    margin-bottom: 20px;
+}
+
+/* 주해박스 small요소 */
+.desc small{
+    /* 전체 패딩적용을 위해
+    블록박스로 변경 */
+    display: block;
+    /* 패딩 p - 위아래 양쪽 */
+    padding: 0 20px;
+}
+
+/* 오늘의 작품 & 느낌 */
+.work{
+    /* 글자중앙정렬 tac */
+    text-align: center;
+    /* 배경색 bgc */
+    background-color: #d7ffd6;
+}
+
+.work cite{
+    /* cite요소 기본 이탤릭해제 */
+    font-style: normal;
+    /* 글자두껍게 fwb */
+    font-weight: bold;
+    /* 글자체 ff */
+    font-family: 'Black And White Picture', sans-serif;
+    /* 글자크기 fz */
+    font-size: 20px;
+    /* 글자색 c */
+    color: darkorange;
+}
+
+/* 메인 컨텐츠 아래 a요소
+주의사항 - 글자색, 밑줄은 반드시
+a요소에서 처리할것! */
+.main a{
+    /* 글자색 c */
+    color: #222;
+    /* 글자데코 tdn 밑줄없앰 */
+    text-decoration: none;
+    /* 글자크기 fz */
+    font-size: 17px;
+    /* 글자체 ff */
+    font-family: "Nanum Gothic";
+    /* 줄간격 lh */
+    line-height: 2.5;
+}
+
+

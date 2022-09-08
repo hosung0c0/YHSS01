@@ -361,7 +361,7 @@
 
     </footer>
 
-    <!-- [ div요소 : divide / division ]
+     <!-- [ div요소 : divide / division ]
         -> 영역을 구분하는 블록요소
         -> 특징: 블록요소 옆에 다른 요소가
         위치하지 못하며 내용을 구분하는 역할
@@ -438,6 +438,121 @@
         - 값으로 메시지를 넣으면 마우스 오버시
           툴팁으로 메시지가 보인다
         - 어떤 요소에도 필요하면 사용가능함
+
+        [ HTML 텍스트 서식 요소들 ]
+
+        1. 두꺼운글자
+        <b>- 굵은 텍스트(bold text)
+        <strong>- 중요한 텍스트(Important text) -> 시멘틱하다!(의미가 있는)
+    
+        2. 이탤릭 스타일 글자    
+        <i>- 기울임꼴 텍스트(italic text)
+        <em>- 강조된 텍스트(emphasized text) -> 시멘틱
+    
+        -> 시멘틱요소(의미있는요소)    
+        : strong, em
+        
+        3. 눈에 띄게 색상표시
+        <mark>- 표시된 텍스트(노란색변경 - markde text)
+    
+        4. 작은글자표시
+        <small>- 더 작은 텍스트(smaller text)
+    
+        5. 지움표시
+        <del>- 삭제된 텍스트(deleted text)
+            -> text-decoration: line-through (중간줄)
+        
+            6. 삽입표시
+        <ins>- 삽입된 텍스트(inserted text)
+            -> text decoration: underline (밑줄)
+        
+        7. 윗첨자, 아랫첨자
+        <sub>- 아래 첨자 텍스트(subscript text)
+        <sup>- 위 첨자 텍스트(superscript text)
+        
+        __________________________________________
+    
+        [ HTML 인용 및 인용 요소 ]
+    
+        1. 인용관련요소
+        (1) 인용블록박스
+        <blockquote> - 블록요소로 별도의 인용구를 구분하는 박스
+        -> 주의: p요소안에 사용하면 안됨
+        (p요소는 인라인요소만 내용으로 가질 수 있다)
+            - cite 속성 : 출처표시
+            (필수속성이 아니며 url주소가 들어가기 때문에
+            링크로 오해할 수 있으나 아님! 단순 출처정보임)
+    
+        (2) 인용영역인라인
+        <q> - 작은 인용구 (쌍따옴표가 자동생성)
+        
+        2. 줄임말 요소
+        <abbr> - 줄임말 오버시 툴팁표시(abbreviation)
+            -> 필수속성: title속성
+            (title속성은 툴팁을 쓰고 싶은 요소에 어디나
+            사용할 수 있다.)
+        
+        3. 주소표시
+        <address> - 주소, 대표자, 전화번호 등 정보표시 - 시멘틱임
+    
+        4. 작품명 인용
+        <cite> - 인용된 작품명 표시
+    
+        5. (Bi-Directional Override)
+        <bdo> 오른쪽부터 출력이 필요한 경우 속성으로 셋팅
+        dir="rtl"
+        -> right to left 즉, 오른쪽에서 왼쪽으로 출력
+
+        _________________________________________________
+        
+        [ 그룹요소 ]
+
+        1. ul - 순서없는 리스트
+            ul > li
+            -> 앞에 블릿은 CSS로 변경가능
+            (list-style-type: square/disc/circle)
+            참고)
+            https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_ul_type_css
+
+        2. ol - 순서있는 리스트(ordered list)
+            ol > li
+            -> 앞에 숫자는 CSS로 혹은 type속성으로 변경가능
+            참고)
+            https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_ol_type_all_css
+
+            - start 속성: 시작번호
+            - reverse 속성: 일련번호를 거꾸로 진행
+        
+        3. 용어정의리스트
+        dl > dt + dd
+
+        dl : 용어리스트
+        dt : 용어정의
+        dd : 용어설명
+        ______________________________
+        
+        주의사항 - dl은 반드시 자식요소로 dt,dd를 한번이상
+        사용해야함!
+
+        4. table 테이블
+            table tr td
+            table > tbody > tr > td
+
+        table : 테이블 박스 부모요소
+        tr : 데이블 행요소(table row)
+        td : 테이블 데이터(table data)
+        참고) table tr td 로만 코딩구성한 경우
+        브라우저 분석기로 보면 table>tbody 가 있다!
+        이는 테이블 본문파트를 나타낸다
+        안싸줘도 기본코딩으로 자동추가됨!
+        (원래 테이블은 thead, tbody, tfoot 세부분으로 구성됨)
+        ________________________________________________________
+
+        [ p 요소 : paragraph ]
+        - 문단을 나눌 때 사용하는 요소
+        - 주의: p요소 내부에 다른 블록요소를 못씀!
+        예컨데 제목요소인 h1~h6를 못쓴다. 
+     -->
 
     
 
