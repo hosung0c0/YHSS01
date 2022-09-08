@@ -281,6 +281,13 @@ a요소에서 처리할것! */
     font-family: "Nanum Gothic";
     /* 줄간격 lh */
     line-height: 2.5;
+    /* 자간 ls */
+    letter-spacing: -1px;
+}
+/* a요소 마우스 오버시 */
+/* 가상클래스  :hover */
+.main a:hover{
+    /* 글자색 c */
 }
 
 
