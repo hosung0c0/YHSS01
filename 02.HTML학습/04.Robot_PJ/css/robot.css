@@ -93,7 +93,7 @@ border: 4px double #000;
     background: url(../images/nose.jpg) no-repeat 0/110% 115%;
     /* 둥근모서리 */
     /* border-radius: 30px; */
-    clip-path: polygon(38.5% 3%,63.5% 3%,76% 58%,92.8% 78%,82% 95%,17.5% 95%,10.5% 76.5%,26% 58%);
+    clip-path: polygon(38.5% 3%,63.5% 3%,76% 58%,92.8% 78%,82% 94%,17.5% 94%,10.5% 79%,28% 58%);
 }
 /* 입 */
 .mouth{
