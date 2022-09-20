@@ -1,15 +1,34 @@
 @charset "utf-8";
 /* 로봇 PJ CSS - robot.css */
 
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Black+Ops+One&family=Chakra+Petch&family=Orbitron:wght@500&display=swap');
+
+/* 
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Black Ops One', cursive;
+    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+*/
+
 /* 공사중표시 */
-body *{
+/* body *{
     outline: 2px dashed lime;
-}
+} */
 
 /* 초기화 */
 html,body,h1,h2,h3,ul,ol{
     margin: 0;
     padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+    /* 내부 아이디 요소로 스크롤 위치 이동시
+    스크롤 애니메이션 처리가 되도록
+    설정하는 속성. html에 세팅하면
+    전체 페이지 스크롤에 적용됨
+    (JS 사용없이 하는 방법!) */
 }
 
 /* 전체배경 */
@@ -30,7 +49,116 @@ body{
 .mt2{
     background: url(../images/metal02.jpg) no-repeat center/cover;
 }
+/* 빛이 나는 로봇 */
+.brRo, .brRo::after, .brRo::before{
+    /* 박스 그림자 : x y blur spread 색 */
+    box-shadow: 0 0 10px 5px cyan;
+    /* 박스 그림자를 밝은 색으로주면 빛나는 효과를 줄 수 있음 */
+}
 
+/***** 1. 상단영역 *****/
+/* 1-1. 로고 */
+.logo{
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 200px;
+    height: 200px;
+    /* 글자색 */
+    color: aquamarine;
+    /* 글자: 스두크/줄체 */
+    font: 45px/200px 'Orbitron';
+    /* 테두리 */
+    border: 2px solid #ccc;
+    /* 둥근모서리 : 원 50% */
+    border-radius: 50%;
+    /* 글자중앙정렬 */
+    text-align: center;
+
+    
+    /* 박스그림자
+    - 내부그림자(inset) + 외부그림자(글로우효과)
+     */
+     box-shadow: inset 0 0 20px 5px #000;
+
+    /* 배경풀세팅: 색이반고윙/크 */
+    background: pink url(../images/robot_03.png) no-repeat center 10px/160px;    
+}
+
+/* 1-2. 내용링크 */
+.link{
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    /* 부모는? 보이는 화면 */
+}
+.link a{
+    /* a요소에서 글자색, 밑줄처리함 */
+    color: lawngreen;
+    text-decoration: none;
+    /* 글자: 스두크/줄체 */
+    font: 50px 'Black Ops One';
+    /* 글자그림자 */
+    text-shadow: 2px 2px 2px #000;
+}
+/* 마우스 오버시 */
+.link a:hover{
+    color: orange;
+    /* 글자데코 */
+    text-decoration: underline;
+}
+/* 1-3. 위로가기버튼 */
+.btnTop{
+    /* 보이는 화면에 고정 */
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+
+    /* button 요소는 기본 디자인에 
+    글자중앙정렬, 세로중앙도 적용됨 */
+
+    /* 배경색(원래기본색있음) */
+    background-color: #ccc;
+    /* 둥근모서리 원 */
+    border-radius: 50%;
+    /* 테두리 */
+    border: 5px outset #fff;
+    
+}
+/* 버튼 a요소 */
+.btnTop a{
+    display: block;
+    
+    /* 크기를 버튼박스에 맞춤 */
+    width: 100%;
+    height: 100%;
+    /* 글자색 */
+    color: blue;
+    /* 글자: 스두크/줄체 */
+    font: 30px/90px 'Black Ops One';
+    /* 
+    font-height가 높이값인 100px이
+    아니고 90px인 이유는?
+    버튼요소가 기본적으로
+    box-sizing:boder-box임
+    이것은 패딩과 보더가
+    내부에 포함됨
+    보더크기가 5px이므로
+    높이값 100px 안에 5px+5px=10px이
+    포함되어서 10px을 뺀 90px로 설정함 */
+}
+.btnTop:hover{
+    /* 배경색 */
+    background-color: #ff0;
+    /* 보더스타일 : inset(outset의 반대) */
+    border-style: inset;
+}
+/* 글자관련은 a요소에 변경 */
+.btnTop:hover a{
+    color: red;
+}
 /* 2-1. 로봇박스 */
 .robx{
     /* 패딩 위, 아래 */
@@ -147,6 +275,7 @@ border: 4px double #000;
     height: 100px;
     /* 선형 그라데이션 */
     background-image: linear-gradient(hotpink,yellow, darkblue);
+    /* 다각형 클리핑(바지모양) */
     clip-path: polygon(80% 100%, 100% 0%, 0% 0%,20% 100%);
 }
 /* 목 */
@@ -351,5 +480,171 @@ border: 4px double #000;
     height: 107%;
     /* 기본보더없앰 */
     border: none;
-    
+}
+
+/**** 2-2.로봇설명박스 ****/
+.dcbx{
+    /* 최대가로크기 maw */
+    max-width: 800px;
+    /* 마영오! */
+    margin: 0 auto;
+    /* 하단공간 */
+    margin-bottom: 200px;
+    /* 반투명 배경색 */
+    background-color: rgba(0, 0, 0, 0.514);
+    /* 글자색 */
+    color: #fff;
+    /* 글자그림자 ts */
+    text-shadow: 1px 1px 1px #000;
+    /* 패딩 : 위아래 양쪽 */
+    padding: 15px 30px;
+    /* 경계선 : 두종색 */
+    border: 3px solid #fff;
+    /* 둥근모서리 */
+    border-radius: 20px;
+    /* 박스그림자
+    - 콤마로 연결하면 다중셋팅가능
+    - inset은 내부그림자 */
+    box-shadow: 
+    inset 0 0 20px blue,
+    inset 0 0 50px 10px cyan;
+}
+
+/* 2-2-1.로봇설명 제목 */
+.dcbx h2{
+    /* 스티키 포지션 적용 */
+    position: sticky;
+    top: 10px;
+    /* top값을 지정하면 보이는 화면에서 위치를 고정함 */
+    /* 글자체 */
+    font-family: 'Chakra Petch';
+    /* 글자중앙 */
+    text-align: center;
+    /* 글자크기 */
+    font-size: 35px;
+    /* 글자색 */
+    color: lime;
+    /* 배경색 흰색반투명 */
+    background-color: rgba(255, 255, 255, 0.546);
+    /* 둥근모서리 */
+    border-radius: 20px;
+}
+/* 2-2-2.로봇정보출처 */
+.dcbx small{
+    /* 글자체 */
+    font-family: 'Chakra Petch';
+    /* 블록으로 변경
+    (텍스트중앙적용위해) */
+    display: block;
+    /* 텍스트중앙 */
+    text-align: center;
+    /* 글자색 */
+    color: #ff0;
+    /* 글자크기 */
+    font-size: 12px;
+    /* 패딩 */
+    padding: 10px;
+}
+/* 2-2-3.설명문단 */
+.dcbx p{
+    /* 글자체 */
+    font-family: 'Barlow';
+    /* 글자크기 */
+    font-size: 15px;
+    /* 줄간격 */
+    line-height: 1.8;
+    /* 자간 */
+    letter-spacing: 1px;
+    /* 단어간격 */
+    word-spacing: 2px;
+
+    /* 가독성을 위한 다단설정 */
+    /* 다단표시(다중열속성) */
+
+    /* 다중열 개수 */
+    column-count: 3;
+
+    /* 다중열 구분선 */
+    column-rule: 
+    5px dotted lightgreen;
+    /* 보더셋팅과 유사함!
+    두께 종류 색상(두종색) */
+
+    /* 다중열 사이간격 */
+    column-gap: 55px;
+
+    /* 양쪽정렬 justify */
+    text-align: justify;
+    /* 단어깨기
+    break-all 모든단어깨기 */
+    word-break: break-all;
+    /* 단어를 깨는 이유는 
+    단어단위로 줄바꿈이 되는
+    1byte문자인 영어인 경우
+    단어단위로 모두 깨줘야
+    양쪽정렬시 중간 공백이 
+    생기지 않는다!
+    (한글과 같은 2byte문자는
+    단어깨기를 안해도 모두
+    떨어진다) */
+
+    /* 첫글자 들여쓰기 ti */
+    text-indent: 20px;
+}
+/* 설명문단 첫글자 가상요소로
+글자디자인 변경하기 */
+.dcbx p::first-letter{
+    /* 글자크기 */
+    font-size: 30px;
+    /* 글자두껍게 */
+    font-weight: bold;
+    /* 글자색 */
+    color: orange;
+}
+
+.dcbx .my::first-letter{
+    font-size: 30px;
+    color: hotpink; 
+}
+
+/************* 3. 하단영역 *************/
+
+.info{
+    /* 패딩 */
+    padding: 50px;
+    /* 글자중앙 */
+    text-align: center;
+    /* 글자색 */
+    color: #fff;
+    /* 글자: 스두크/줄체 */
+    font: 30px 'Black Ops One';
+    /* 글자그림자 */
+    text-shadow: 2px 2px 2px #000;
+    /* 배경색 검정반투명 */
+    background-color: rgba(0, 0, 0, 0.504);
+}
+/* 가상요소로 아이콘 넣기 */
+.info span::before{
+    content: '';
+    /* 인라인이면서 디자인적용 */
+    display:inline-block;
+    width: 30px;
+    height: 30px;
+    background: pink url(../images/robot_03.png) no-repeat;
+    /* 배경세부설정 
+    세팅한 background 아래에
+    쓰면 덮어써진다 */
+    background-position: -11.5px 2px;
+    background-size: 60px;
+
+    /* 원모양 */
+    border-radius: 50%;
+    /* 테두리 */
+    border: 2px solid #ccc;
+
+    /* 인라인요소간 세로정렬 */
+    vertical-align: -5px;
+    /* 오른쪽마진 */
+    margin-right: 7px;
+
 }
