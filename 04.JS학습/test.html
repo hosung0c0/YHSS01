@@ -377,7 +377,7 @@
             // 3-3. 트랜지션주기
             // 전체 2초, 트랜스폼 1초동안 2초후 애니
             // top과 left는 3초간 2초후
-            목표.style.transition = "2s,transform 1s 2s,top 3s 2s,left 3s 2s";
+            목표.style.transition = "2s";
 
             // 3-4. 원모양 만들기
             목표.style.borderRadius = "50%";
@@ -391,46 +391,13 @@
 
             // 3-7. 트랜스폼 적용(정중앙이동)
             목표.style.transform = 
-            "translate(-50%,-50%) rotate(360deg) scale(.7)";
-
-            // 3-8. 전체배경색 변경
-            // 대상: body
-            // JS에서 body는 특별히 취급해서
-            // document.body라고 선택함
-            var 바디 = document.body;
-            바디.style.backgroundColor = "lightgreen";
-            바디.style.transition = "5s 3s";
-
-            // 4. title속성 메세지 변경하기
-            // 우영우 드라마로 더블클릭 안내
-            // 대상: .pbox -> 목표
-            목표.title = "더블클릭 하면 우영우를 보실 수 있습니다";
-            // 요소선택.속성명 = 값 -> 속성값 변경법
+            "translate(-50%,-50%)"
 
 
        } ///////////// 보여줘 함수 /////////////////
        ////////////////////////////////////////////
         
-        /*************************************************
-            함수명: 바꿔
-            기능: 다른 드라마의 배경과 글자로 변경함
-         ************************************************/
-        function 바꿔(){
-
-            // 1. 
-            console.log('바꿔');
-
-            // 2. 변경대상 : .pbox
-            var 목표 =
-            document.getElementsByClassName('pbox')[0];
-            // 아이템 선택시 .item(순번) 대신 [순번] 가능
-
-            // 3. 변경내용 : 배경이미지 변경 + 글내용변경
-            // 배경이미지
-            목표.style.backgroundImage = "url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA4MjNfMjI4%2FMDAxNjYxMjY1NTAxODEx.xj66CDgK5PjDW2jgy5Vhj2j5_PgTWob4Yh4DTzr4QrMg.1b_MA6yycug14_gKVc9X2lzQgMdzHAvo-Kix9kz_Pz0g.JPEG.yhj0189%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25AD105.jpg&type=sc960_832)";
-            // 글자변경
-            목표.innerHTML = "우 to the 영 to the 우"
-        }
+        
 
     </script>
     <style>
@@ -508,7 +475,7 @@
 <body>
 
     <!-- 드라마 소개박스 -->
-    <p class="pbox" title="여기를 클릭하세요!" onclick="보여줘()" ondblclick="바꿔()">
+    <p class="pbox" title="여기를 클릭하세요!" onclick="보여줘()">
         나는 요즘 매일 생각한다! <br>
         도대체 <span id="name"></span>
     </p>
