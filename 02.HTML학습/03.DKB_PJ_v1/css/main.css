@@ -8,9 +8,9 @@
 @import url(reset.css);
 
 /* 공사중 표시 */
-body * {
-    outline: 2px dashed gray;
-}
+/* body * {
+    outline: 1.5px dashed gray;
+} */
 
 /* 컨텐츠 파트 최상위부모 */
 body{
@@ -80,10 +80,10 @@ body{
 
 /* 캐릭터 이미지박스 */
 .ci{
+    /* 하단패딩 - 아래 설명박스와 간격 */
+    padding-bottom: 15px;
     /* 트랜지션: 속시이지 trs */
     transition: margin-top .4s ease-out;
-    /*  */
-    margin-bottom: 15px;
 }
 /* 캐릭터 박스에 마우스 오버시 .ci 마진탑 변경 */
 .cat:hover .ci{
@@ -129,7 +129,7 @@ body{
 
 /* 캐릭터박스 .cat에 오버시 */
 /* 마우스 오버시 처리1 
-첫번째 이미지 보이기*/
+첫번째 이미지 보이기(원래 inline) */
 .cat:hover .ci figcaption
 img:first-child{
     display: inline;
