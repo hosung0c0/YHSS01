@@ -1,219 +1,212 @@
 @charset "utf-8";
-/* 도깨비 PJ 공통묘듈 CSS - common.css */
-/* 상단영역, 하단영역 반복디자인 */
+/* 도깨비 PJ 메인 페이지 CSS - main.css */
+/* 메인 페이지에만 적용되는 CSS */
 
-/************** 1. 상단영역 **************/
-/* 겉박스 */
-#top{
-    /* 배경색 */
-    background-color: #fff;
+/* 외부 CSS합치기 */
+@import url(reset.css);
+@import url(core.css);
+@import url(common.css);
+
+/* 공사중 표시 */
+/* body * {
+    outline: 1px dotted red;
+} */
+
+/* 컨텐츠 파트 최상위부모 */
+body{
+    /* 한번에 배경주기 + 여러개주기 */
+    /* background: 색이반고윙/크 */
+    /* 콤마로 구분하여 여러 배경이미지를 넣을 수 있고
+    먼저쓴 이미지가 위에 온다! */
+    background: 
+    url(../images/bg_logo_a_01.png) no-repeat fixed 10% 30%/10%,
+    url(../images/bg_mainvisual.jpg) no-repeat fixed center/cover;
+   
+    /*  
+        background-attachment: fixed;
+        고정의 기준은 보이는 화면이다!!!
+        스크롤해도 고정된 배경은 움직이지 않는다!
+     */
 }
-/* 속박스 */
-.top{
-    /* 레러티브 포지션 - 부모자격(.tmenu) */
-    position: relative;
-    height: 128px;
+
+
+/****** 메인영역 ******/
+.cont{
+    /* 최소높이값 mh */
+    min-height: 969px;
+    /* 최소높이는 내용이 없어도
+    설정되 크기를 유지하다가 내용이
+    많아지면 늘어난다!(많이사용됨) */
+    
+    /* 넘치는 자식요소숨기기 */
+    overflow: hidden;
+    /* 이거 왜했지? 첫번째 자식요소 마진탑값이
+    부모요소 바깥으로 미는 기본특성이 있으므로
+    이것을 포함하기 위해 설정함! */
 }
-/* 1-1. 로고 */
-.logo{
-    /* 이미지와 같은 width 세팅 */
-    width: 100px;
-    /* 마영오 */
+
+/* 전체캐릭터박스 */
+.cbx{
+    /* 가로크기 w */
+    width: 90%;
+    /* 마영오! */
     margin: 0 auto;
-    /* 패딩상단 */
-    padding-top: 20px;
+    /* 마진탑 mt */
+    margin-top: 500px;
+    /* 마진아래 mb */
+    margin-bottom: 100px;
 }
-/* 로고이미지 */
-.logo img{
-    width: 100px;
-}
-/* 1-2. GNB메뉴 */
-.gnb{
-    /* 가로크기를 주고 마영오적용 */
-    width: 574px;
-    /* 마영오 */
-    margin: 0 auto;
-    /* 마진상단 */
-    margin-top: 25px;
-}
-/* GNB 상위메뉴 li */
-.gnb>ul>li{
-    /* 패딩양쪽 */
-    padding: 0 15px;
-}
-/* GNB 상위메뉴 a */
-.gnb>ul>li>a{
-    /* 렐러티브 포지션 - 부모자격(a::after) */
-    position: relative;
-    /* 디스플레이 변경 블ㄹ록 */
-    display: block;
-    /* 글자세팅 */
-    font-size: 1.7rem;
-    line-height: 2.5;
-}
-/* 가상요소로 하단바 만들기 */
-.gnb>ul>li>a::after{
+
+/* 자식요소의 float해제 설정 가상요소 after로! */
+.cbx::after{
     content: '';
     display: block;
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    height: 3px;
-    background-color: red;
-    /* 트랜지션: 속시이지 trs */
-    transition: width .2s;
-}
-/* 오버시 하단바 보이기 */
-.gnb>ul>li>a:hover::after{
-    width: 100%;
-}
-/* 1-3. sns메뉴 */
-.tmenu{
-    /* 앱솔루트포지션 */
-    position: absolute;
-    top: 20px;
-    right: 0;
-    /* 부모는? .top */
-}
-/* sns메뉴 상위 li */
-.tmenu>ul>li{
-    /* 패딩양쪽 */
-    padding: 0 15px;
-}
-/* 탑메뉴 상위 a */
-.tmenu>ul>li>a{
-    /* 글자크기 */
-    font-size: 15px;
-}
-/* sns메뉴 */
-.sns{
-    /* 마진 상단 */
-    margin-top: -5px;
-
-}
-.sns li{
-    width: 30px;
-    height: 30px;
-    /* 배경이미지로 sns 아이콘 넣기(스프라이츠) */
-    background: url(../images/icons.png) no-repeat;
-}
-/* 트위터 */
-.sns li:nth-child(1){
-    background-position: 0 0;
-}
-/* 트위터 오버시 */
-.sns li:nth-child(1):hover{
-    background-position: 0 -30px;
-}
-/* 인스타그램 */
-.sns li:nth-child(2){
-    background-position: -30px 0;
-}
-/* 인스타그램 오버시 */
-.sns li:nth-child(2):hover{
-    background-position: -30px -30px;
-}
-/* 페이스북 */
-.sns li:nth-child(3){
-    background-position: -60px 0;
-}
-/* 페이스북 오버시 */
-.sns li:nth-child(3):hover{
-    background-position: -60px -30px;
+    clear: both;
 }
 
-/* sns a요소 확장 */
-.sns a{
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-/************** 3. 하단영역 **************/
-/* 겉박스 */
-#info{
-    background-color: rgba(255, 255, 255, 0.765);
-}
-/* 속박스 */
-.info{
-    /* 레러티브 포지션 - 부모자격(.brand) */
+/* 캐릭터박스 */
+.cat {
+    /* 레러티브 포지션 - 부모자격(.cd) */
     position: relative;
-    height: 241px;
-}
-/* 3-1. 하단링크 */
-.blink{
-    /* 패딩상단 pt */
-    padding-top: 5px;
-}
-/* 하단링크 리스트 */
-.blink ul{
-    /* 가로크기를 줘야 마영오적용확인! */
-    width: 804px;
-    /* 마영오 - 블록박스 가로중앙 */
-    margin: 0 auto;
-}
+    /* 가로크기 4등분 : 25% - 1%(양쪽마진)  */
+    width: 24%;
+    /* 양쪽마진 : 위아래0 양쪽0.5% */
+    margin: 0 .5%;
+    /* 보통 0.5%와 같이 0.소수점은 앞에 0생략가능! */
 
-.blink li{
-    /* 옆으로 흐르게 */
+    /* 블록박스 옆으로 흐르게 */
     float: left;
-    /* 양쪽패딩 */
-    padding: 0 15px;
-}
-/* 글자셋팅 */
-.blink a{
-    /* 글자셋팅 */
-    color: #222;
-    font-weight: bold;
-    font-size: 1.4rem;
-    line-height: 2.8;
-}
-/* 마우스 오버시 a */
-.blink a:hover{
-    /* 글자색변경, 밑줄 */
-    color: red;
-    text-decoration: underline;
+    /* left값은 "나는왼쪽에 너는 오른쪽에 올라와!" */
 }
 
-/* 3-2. 회사정보 */
-.addr{
-    /* 패딩 */
-    padding: 10px;
+/* 캐릭터 이미지박스 */
+.ci{
+    /* 하단패딩 - 아래 설명박스와 간격 */
+    padding-bottom: 15px;
+    /* 트랜지션: 속시이지 trs */
+    transition: margin-top .4s ease-out;
 }
-.addr address{
-    /* 글자셋팅 - address요소 기본 이탤릭해제 */
-    font-size: 1.4rem;
-    font-style: normal;
+/* 캐릭터박스에 마우스 오버시 .ci 마진탑변경 */
+.cat:hover .ci{
+    margin-top: -50%;
+}
+
+/* 캐릭터 이미지
+- .ci의 직계자식 img만 선택! */
+.ci > img{
+    /* 박스를 채움! */
+    width: 100%;
+}
+
+/* 캐릭터 이름박스 */
+.ci figcaption{
+    /* 글자중앙 tac 
+        text-align 속성은 글자뿐아니라
+        인라인요소는 모두 적용된다!
+        단, 크기를 가지는 블록형박스만됨!
+    */
     text-align: center;
-    line-height: 2;
 
-    /* 박스셋팅 */
-    width: 804px;
-    margin: 0 auto;
-    padding: 10px;
-    border: 4px double #222;
+    /* 이미지를 위로 올려 겹치게
+    하려면? 포지션을 안쓰고는 마진을
+    마이너스로 준다! */
+    margin-top: -20%;
+    /* %의 기준은? 원래박스 높이값 */
 }
 
-/* 3-3. 하단로고 */
-.blogo{
-    /* 글자중앙 */
-    text-align: center;
+/* 캐릭터 이름이미지 공통 */
+.ci figcaption img {
+    /* 가로크기 w */
+    width: 40%;
+    /* 항상 값이 %단위일 경우
+    질문한다~!!! 기준이뭐지?
+    -> 여기서는 싸고 있는 
+    figcation 박스 가로크기가 기준 */
 }
 
-/* 3-4. 바로가기 */
-.brand{
+/* 캐릭터 이름이미지 
+첫번째이미지(진한이미지) 숨기기 */
+.ci figcaption img:first-child{
+    display: none;
+}
+/* 캐릭터박스 .cat에 오버시 */
+/* 마우스 오버시 처리1
+첫번째이미지 보이기(원래 inline) */
+.cat:hover .ci figcaption img:first-child{
+    display: inline;
+}
+/* 마우스 오버시 처리2
+마지막이미지 숨기기 */
+.cat:hover .ci figcaption img:last-child{
+    display: none;
+}
+
+/* 캐릭터 설명박스 */
+.cd{
     /* 앱솔루트 포지션 */
     position: absolute;
-    top: 5px;
-    right: 0;
-    /* 부모는? .info */
-}
-/* 선택박스 */
-#sel{
-    /* 글자세팅 */
-    color: #222;
-    font-weight: bold;
-    font-size: 1.4rem;
+    /* 위치에 대하여 젠틀앱솔루트! */
+    /* 가로크기 설정안한 경우 auto이며
+    이는 앱솔루트일때 부모를 찾음!
+    -> .cat 부모자격 부여! */
 
-    /* 패딩 */
-    padding: 8px;
+    /* 높이값 설정 h */
+    height: 0;/* -> .cat에 마우스 오버시 250px; */
+    /* 넘치는 내용요소 자동스크롤 */
+    overflow: auto;
+    /* 
+        [ overflow 속성 ]
+        ->  넘치는 요소 처리속성
+        - visible 넘쳐도보임(기본값)
+        - hidden 넘치는 요소 숨기기
+        - scroll 스크롤바 생김
+            (x,y 두방향 모두 생김)
+            overflow-y 로 해야 y만생김
+        - auto 내용넘치면 자동으로
+            y축 스크롤만 생김
+    */
+    /* 마진 상단 mt -> 오버시 떨림문제 
+    -> .ci 하단패딩대체 */
+    /* margin-top: 15px; */
+
+    /* 배경: 색이반고윙/크 */
+    background: url(../images/eachBG.jpg) no-repeat center/cover;
+
+    /* 둥근모서리 : 왼위 부터 시계방향 */
+    border-radius: 20px 5px 5px 20px;
+
+    /* 트랜지션 : 속시이지 trs */
+    transition: height .4s ease-out;
+}
+/* 캐릭터박스에 오버시 .cd 높이값 변경 */
+.cat:hover .cd{
+    height: 250px;
+}
+
+/* 캐릭터 설명 타이틀 */
+.cd h3{
+    /* 글자체 ff - 웹폰트 */
+    font-family: 'Gugi';
+    /* 글자크기 fz - min() 최대글자크기 지정 */
+    font-size: min(1.9vw,24px);
+    /* 글자두께 보통 fwn */
+    font-weight: normal;
+    /* 패딩 : 위 15px 양쪽 1vw(최대값10px) 아래 5px */
+    padding: 15px min(1vw,10px) 5px;
+    /* 자간 ls */
+    letter-spacing: -1px;
+}
+
+/* 캐릭터 설명 문단 */
+.cd p{
+    /* 글자체 ff */
+    font-family: 'Single Day','ZCOOL KuaiLe';
+    /* 글자크기 fz */
+    font-size: min(1.3vw,18px);
+    /* 줄간격 lh */
+    line-height: 1.6;
+    /* 패딩 p */
+    padding: min(2vw,10px);
+    /* 양쪽정렬 justify */
+    text-align: justify;
 }

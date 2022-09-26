@@ -3,9 +3,10 @@
 /* 메인 페이지에만 적용되는 CSS */
 
 /* 외부 CSS합치기(인포트) */
-@import url(common.css);
-@import url(core.css);
 @import url(reset.css);
+@import url(core.css);
+@import url(common.css);
+
 
 /* 공사중 표시 */
 /* body * {
@@ -19,7 +20,7 @@ body{
     /* 콤마로 구분하여 여러 배경이미지를 넣을 수 있고
     먼저 쓴 이미지가 위에 온다 */
     background:
-    url(../images/bg_logo_a_01.png) no-repeat fixed 0% 0%/10%,
+    url(../images/bg_logo_a_01.png) no-repeat fixed 10% 30%/10%,
     url(../images/bg_mainvisual.jpg) no-repeat fixed center/
     cover;
     
@@ -74,7 +75,7 @@ body{
     margin: 0 .5%;
     /* 보통 0.5와 같은 소수는 소수점 앞에 0 생략 */
     /* 블록박스 옆으로 흐르게 */
-    float:left;
+    float: left;
     /* left값은 "나는 왼쪽에 너는 오른쪽에 */
 }
 
