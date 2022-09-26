@@ -14,6 +14,11 @@ font-family: 'ZCOOL KuaiLe', cursive;
 font-family: 'Nanum Gothic', sans-serif;
 */
 
+/* 전체 글자크기 Root 세팅 */
+html{
+    font-size: 10px;
+    /* 글자 rem단위 계산편의때문 */
+}
 /* 전체 웹폰트 일반적용! */
 body{
     font-family: 'Nanum Gothic', sans-serif ;
@@ -38,14 +43,13 @@ body{
 .scbar::-webkit-scrollbar-thumb{
     /* 스크롤바 */
     background-color: #555;
-    border-right: 5px;
     border-radius: 3px;
 
 }
 .scbar::-webkit-scrollbar-track{
     /* 스크롤바 트랙 */
     background-color: rgb(206, 200, 200);
-    border-right: 5px;
+    border-radius: 5px;
 }
 
 /* float 셋팅 클래스 */
