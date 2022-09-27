@@ -1,212 +1,291 @@
-@charset "utf-8";
-/* 도깨비 PJ 메인 페이지 CSS - main.css */
-/* 메인 페이지에만 적용되는 CSS */
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 
+    lang속성 - 웹페이지의 주요언어정보를 담는다
+    웹접근성 필수속성(평등의 원칙!)
+    언어코드 참조
+    https://www.w3schools.com/tags/ref_language_codes.asp -->
 
-/* 외부 CSS합치기 */
-@import url(reset.css);
-@import url(core.css);
-@import url(common.css);
+<head>
+    <!-- 인코딩 지정 메타태그 필수! -->
+    <meta charset="UTF-8">
+    <!-- 뷰포트 필수! - 미디어쿼리 적용위해! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 메타요소 정보 : 사이트의 요약정보를 전달하는 필수요소 특히 검색엔진에서 사이트정보를 수집할때 description의 정보를 수집한다! 또는 keyword의 정보도 수집하지만 구글에서는 keyword는 수집 대상이 아니라고 공식발표함 -->
+    <meta name="description"
+        content="불멸의 삶을 끝내기 위해 인간 신부가 필요한 도깨비, 그와 기묘한 동거를 시작한 기억상실증 저승사자. 그런 그들 앞에 &#39;도깨비 신부&#39;라 주장하는 &#39;죽었어야 할 운명&#39;의 소녀가 나타나며 벌어지는 神비로운 낭만 설화.">
+    <meta name="keywords" content="도깨비, 도깨비,공유,김은숙,김고은,이동욱,유인나,육성재,금토드라마">
+    <title>쓸쓸하고 찬란하신(神) 도깨비</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!-- 미디어쿼리는 메인css 아래위치(덮어씀!) -->
+    <link rel="stylesheet" href="css/media.css">
+</head>
 
-/* 공사중 표시 */
-/* body * {
-    outline: 1px dotted red;
-} */
+<body class="scbar">
+    <!-- 
+        [ 레이아웃 기본박스 구조 ]
+            ((2중박스 구조))
+            겉박스 - 영역좌우 끝까지 차지함
+            속박스 - 내용을 특정크기로 중앙정렬(마.영.오!)
+    -->
+    <!-- 1. 상단영역 -->
+    <div id="top">
+        <header class="top ibx">
+            <!-- 1-1.로고 -->
+            <h1 class="logo">
+                <a href="#">
+                    <img src="./images/tvnlogo2.png" alt="tvN로고">
+                </a>
+            </h1>
+            <!-- 1-2.GNB메뉴 -->
+            <nav class="gnb">
+                <ul class="clb">
+                    <li class="sm">
+                        <a href="#">프로그램 소개</a>
+                        <div class="smenu">
+                            <ol>
+                                <li><a href="#">프로그램 소개</a></li>
+                                <li><a href="#">인물소개</a></li>
+                                <li><a href="#">인물관계도</a></li>
+                            </ol>
+                        </div>
+                    </li>
+                    <li><a href="#">미리보기</a></li>
+                    <li class="sm">
+                        <a href="#">동영상</a>
+                        <div class="smenu">
+                            <ol>
+                                <li><a href="#">클립영상</a></li>
+                                <li><a href="#">다시보기</a></li>
+                                <li><a href="#">예고편</a></li>
+                                <li><a href="#">스페셜</a></li>
+                            </ol>
+                        </div>
+                    </li>
+                    <li class="sm">
+                        <a href="#">사진첩</a>
+                        <div class="smenu">
+                            <ol>
+                                <li><a href="#">현장 포토</a></li>
+                                <li><a href="#">대표 포스터</a></li>
+                            </ol>
+                        </div>
+                    </li>
+                    <li><a href="#">OST</a></li>
+                    <li><a href="#">시청자 게시판</a></li>
+                </ul>
+            </nav>
+            <!-- 1-3.탑메뉴 -->
+            <aside class="tmenu">
+                <ul class="clb">
+                    <li>
+                        <a href="#">로그인</a>
+                    </li>
+                    <li>
+                        <a href="#">회원가입</a>
+                    </li>
+                    <li>
+                        <!-- sns메뉴 -->
+                        <ol class="sns clb">
+                            <li>
+                                <a href="#">
+                                    <span class="ir">
+                                        트위터 바로가기
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="ir">
+                                        인스타그램 바로가기
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="ir">
+                                        페이스북 바로가기
+                                    </span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+                </ul>
+            </aside>
+            <!-- 모바일용 햄버거버튼 -->
+            <button class="ham"></button>
+        </header>
+    </div>
+    <!-- 2. 메인영역 -->
+    <div>
+        <!-- 메인영역 속박스는 .ibx적용안함! -->
+        <main class="cont">
+            <!-- 전체캐릭터박스 -->
+            <div class="cbx">
+                <!-- 1. 공유 -->
+                <section class="cat">
+                    <!-- 캐릭터 이미지박스 -->
+                    <figure class="ci">
+                        <!-- 캐릭터 이미지 -->
+                        <img src="./images/dc1.png" alt="공유">
+                        <!-- 캐릭터 이름이미지 -->
+                        <figcaption>
+                            <img src="./images/d01.png" alt="진한이름">
+                            <img src="./images/d011.png" alt="흐린이름">
+                        </figcaption>
+                    </figure>
+                    <!-- 캐릭터 설명박스 -->
+                    <article class="cd scbar">
+                        <!-- 캐릭터 타이틀 -->
+                        <h3>도깨비(김신), 939세</h3>
+                        <!-- 캐릭터 설명 -->
+                        <p>백성들은 그를 신(神)이라고 불렀다. 시뻘건 피를 뒤집어쓴 채 푸르게 안광을 빛내며 적들을 베는 그는 문자 그대로의 무신(武神)이었으나, 자신이 지키던 주군의 칼날에
+                            죽었다. 영웅으로 살다 역적으로 죽어가던 김신에게 천상의 존재는 상인지 벌인지 모를 늙지도 죽지도 않는 생을 주었고, 그로부터 935년 동안 도깨비로 살았다. 심장에
+                            검을 꽂은 채로. </p>
 
-/* 컨텐츠 파트 최상위부모 */
-body{
-    /* 한번에 배경주기 + 여러개주기 */
-    /* background: 색이반고윙/크 */
-    /* 콤마로 구분하여 여러 배경이미지를 넣을 수 있고
-    먼저쓴 이미지가 위에 온다! */
-    background: 
-    url(../images/bg_logo_a_01.png) no-repeat fixed 10% 30%/10%,
-    url(../images/bg_mainvisual.jpg) no-repeat fixed center/cover;
-   
-    /*  
-        background-attachment: fixed;
-        고정의 기준은 보이는 화면이다!!!
-        스크롤해도 고정된 배경은 움직이지 않는다!
-     */
-}
+                        <p>“오직 도깨비 신부만이 그 검을 뽑을 것이다.” 지독히 낭만적인 저주였다. 그래서 쉬울 줄 알았지만 그가 만난 어떤 여자도 검을 발견하지 못한 채 불멸을 살던 어느
+                            날. 자신을 도깨비 신부라고 소개하는 열아홉 살 소녀 은탁과 맞닥뜨린다. 그에게 도깨비 신부는 고통에서 벗어나 소멸할 수 있는 도구였다. 달리 말하면 은탁은 자신을
+                            죽일 수 있는 유일무이한 무기였다. </p>
+
+                        <p>죽고 싶게 괴로운 날은 은탁의 환심을 샀다가 아직 죽긴 일러 싶은 날은 멀리 했다가 하루에도 열 두 번씩 마음이 오락가락 했다. 은탁의 웃음에 그는 몇 번이나 어딘가를
+                            돌아보고 싶은 마음에 사로잡혔다. 돌아서 한 번 더 보려는 것이 불멸의 삶인가, 너의 얼굴인가. 아, 너의 얼굴인 것 같다</p>
+                    </article>
+                </section>
+                <!-- 2. 김고은 -->
+                <section class="cat">
+                    <!-- 캐릭터 이미지박스 -->
+                    <figure class="ci">
+                        <!-- 캐릭터 이미지 -->
+                        <img src="./images/dc2.png" alt="김고은">
+                        <!-- 캐릭터 이름이미지 -->
+                        <figcaption>
+                            <img src="./images/d02.png" alt="진한이름">
+                            <img src="./images/d022.png" alt="흐린이름">
+                        </figcaption>
+                    </figure>
+                    <!-- 캐릭터 설명박스 -->
+                    <article class="cd scbar">
+                        <!-- 캐릭터 타이틀 -->
+                        <h3>지은탁, 19세</h3>
+                        <!-- 캐릭터 설명 -->
+                        <p>대한민국의 평범한 고3 수험생, 이고 싶지만 그녀의 인생은 태어날 때부터 평범하지 않았다. 어려서부터 다른 사람들 눈엔 보이지 않는 죽은 혼들이 보였고, 때문에 친구들
+                            사이에선 늘 외톨이였다. 엄마 없는 하늘 아래 못된 이모와 이모를 꼭 닮은 이모 자식들의 모진 구박을 견디며 지낸 지 꼬박 십년. 온갖 불행 소스를 다 때려 넣은
+                            잡탕 같은 이 인생이 어이가 없는 와중에, 도깨비를 만났다. 그리고 은탁은 도깨비 신부가 될 운명이란다. </p>
+
+                        <p>미스터리 호러 가난물이었던 인생에 갑자기 판타지라는 이상한 장르가 끼었다. 촛불을 끄면 항상 도깨비가 나타났다. 호기심에 불러냈던 게 습관이 되고, 안 보면 보고
+                            싶고, 도깨비를 기다리는 일은 아직 오지 않은 좋은 미래를 기다리는 것처럼 설렜다. 감정 기복이 심해서 성가실 때도 있지만, 가슴에 검이 꽂힌 채로 살면 그렇게
+                            되겠거니 싶어 봐주기로 한다. 근데 그 검을 나보고 뽑아달란다. 그 말이 꼭 끝내자는 말처럼 아프다.</p>
+                    </article>
+                </section>
+                <!-- 3. 이동욱 -->
+                <section class="cat">
+                    <!-- 캐릭터 이미지박스 -->
+                    <figure class="ci">
+                        <!-- 캐릭터 이미지 -->
+                        <img src="./images/dc3.png" alt="이동욱">
+                        <!-- 캐릭터 이름이미지 -->
+                        <figcaption>
+                            <img src="./images/d03.png" alt="진한이름">
+                            <img src="./images/d033.png" alt="흐린이름">
+                        </figcaption>
+                    </figure>
+                    <!-- 캐릭터 설명박스 -->
+                    <article class="cd scbar">
+                        <!-- 캐릭터 타이틀 -->
+                        <h3>저승사자, 30대 후반 추정</h3>
+                        <!-- 캐릭터 설명 -->
+                        <p>죽는다는 건, 그와 선약이 생기는 거다. 누구나 그를 보면 놀란다. 처음엔 잘생겨서, 그 다음엔 내가 죽었구나 싶어서. 생의 마지막 순간에 마중 나오면서까지 저렇게
+                            섹시할 필요가 있을까 싶다. 도깨비인 김신과 함께 살면서 하루에 열두 번씩 바뀌는 신의 변덕에 인내심이 한계를 느낄 때마다, 전생에 뭔 큰 죄를 짓긴 지었구나 싶지만
+                            전생에 무엇이었는지, 인간이긴 했는지, 어떻게 저승사자가 됐는지 전혀 모른다. </p>
+
+                        <p>죽음에서 눈을 떠보니 이미 저승사자였다. 저승사자가 되고 나선 날을 세는 것을 잊어버렸다. 그가 세어나가는 것은 무수한 망자들의 혼뿐. </p>
+
+                        <p>그러던 어느 날, 우연히 마주친 한 여자, 써니에 현기증을 느꼈다. 처음 보는 게 분명한데 오래 그리워한 기분이었다. 써니의 예측 불가한 행동들은 상상력을 발휘해야
+                            했고, 그의 서툰 행동들은 하나같이 오답이었다. 이게 다 연애를 드라마로만 배운 탓이다. 그는 헷갈렸다. 이것은 신의 계획일까, 실수일까.</p>
+                    </article>
+                </section>
+                <!-- 4. 유인나 -->
+                <section class="cat">
+                    <!-- 캐릭터 이미지박스 -->
+                    <figure class="ci">
+                        <!-- 캐릭터 이미지 -->
+                        <img src="./images/dc4.png" alt="유인나">
+                        <!-- 캐릭터 이름이미지 -->
+                        <figcaption>
+                            <img src="./images/d04.png" alt="진한이름">
+                            <img src="./images/d044.png" alt="흐린이름">
+                        </figcaption>
+                    </figure>
+                    <!-- 캐릭터 설명박스 -->
+                    <article class="cd scbar">
+                        <!-- 캐릭터 타이틀 -->
+                        <h3>써니, 20대 중후반</h3>
+                        <!-- 캐릭터 설명 -->
+                        <p>혈혈단신 천애고아. 철없이 사는 여자가 세상 살기 가장 편하다는 걸 일찍부터 깨달았다. 남자의 외모는 내면으로 들어가는 창이고, 김중배의 다이아몬드는 잡는 게 당연한
+                            거고, 진정한 사랑은 통장 잔고에서 느껴진다. 누군가의 첫사랑이 되는 게 세상에서 제일 쉬웠던 써니의 나이 곧 서른이었다. </p>
+
+                        <p>그 남자, 저승사자를 처음 만난 건 갖고 싶은 반지를 발견했을 때였다. 그는 그녀에게 양보하지 않은 최초의 남자였다. 첫눈에 반했다고 넘겨짚기엔 너무, 슬픈 눈이었다.
+                            시계며 차림새만 대충 훑어도 연봉 1억에 딱 봐도 연애 못해본 모태솔로인 줄만 알았는데, 만날수록 이상한 남자다. 두문불출하기 일쑤고 직업, 나이, 과거사 그 무엇도
+                            알려주지 않는다. 처음엔 그저 잘생긴 호구로 생각했는데, 그 슬펐던 눈이 자꾸 눈에 밟힌다. 동정은 특기가 아닌데도.</p>
+                    </article>
+                </section>
+            </div>
 
 
-/****** 메인영역 ******/
-.cont{
-    /* 최소높이값 mh */
-    min-height: 969px;
-    /* 최소높이는 내용이 없어도
-    설정되 크기를 유지하다가 내용이
-    많아지면 늘어난다!(많이사용됨) */
-    
-    /* 넘치는 자식요소숨기기 */
-    overflow: hidden;
-    /* 이거 왜했지? 첫번째 자식요소 마진탑값이
-    부모요소 바깥으로 미는 기본특성이 있으므로
-    이것을 포함하기 위해 설정함! */
-}
+        </main>
+    </div>
 
-/* 전체캐릭터박스 */
-.cbx{
-    /* 가로크기 w */
-    width: 90%;
-    /* 마영오! */
-    margin: 0 auto;
-    /* 마진탑 mt */
-    margin-top: 500px;
-    /* 마진아래 mb */
-    margin-bottom: 100px;
-}
+    <!-- 3. 하단영역 -->
+    <div id="info">
+        <footer class="info ibx">
+            <!-- 3-1. 하단링크 -->
+            <div class="blink">
+                <ul class="clb">
+                    <li><a href="#">법적고지</a></li>
+                    <li><a href="#">영상정보처리기기운영/관리방침</a></li>
+                    <li><a href="#">이메일무단수집거부</a></li>
+                    <li><a href="#">사이버감사실</a></li>
+                    <li><a href="#">찾아오시는길</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                </ul>
+            </div>
+            <!-- 3-2. 회사정보 -->
+            <div class="addr">
+                <address>
+                    (주)씨제이이엔엠 CJ ENM 대표이사 강호성, 허민호 <br>
+                    주소 (03926) 서울시 마포구 상암산로 66 사업자 등록번호 106-81-51510 개인정보보호책임자 김재환 <br>
+                    © CJ ENM. All Rights Reserved.
+                </address>
+            </div>
+            <!-- 3-3. 하단로고 -->
+            <div class="blogo">
+                <img src="images/blogo.png" alt="하단로고">
+            </div>
+            <!-- 3-4. 바로가기 -->
+            <div class="brand">
+                <select name="sel" id="sel">
+                    <option value="init">브랜드 바로가기</option>
+                    <option value="tvn">tvN</option>
+                    <option value="ocn">OCN</option>
+                    <option value="mnet">MNET</option>
+                </select>
+            </div>
+            <!-- 
+                [ select 요소 ]
+                - 지정된 값을 선택하는 입력요소
+                - name속성은 폼요소로 전송시 사용됨
+                - 하위필수요소 : option - 각 선택항목
+                - 옵션을 그룹화하는 요소 : optgroup
+                - 유의사항 : 값을 선택할 경우 선택값은
+                option 요소의 속성인 value값을 읽어감
+                단, value를 안쓸 수 있는데 안쓰게되면
+                내부 데이터값을 읽어감
 
-/* 자식요소의 float해제 설정 가상요소 after로! */
-.cbx::after{
-    content: '';
-    display: block;
-    clear: both;
-}
+             -->
+        </footer>
+    </div>
 
-/* 캐릭터박스 */
-.cat {
-    /* 레러티브 포지션 - 부모자격(.cd) */
-    position: relative;
-    /* 가로크기 4등분 : 25% - 1%(양쪽마진)  */
-    width: 24%;
-    /* 양쪽마진 : 위아래0 양쪽0.5% */
-    margin: 0 .5%;
-    /* 보통 0.5%와 같이 0.소수점은 앞에 0생략가능! */
 
-    /* 블록박스 옆으로 흐르게 */
-    float: left;
-    /* left값은 "나는왼쪽에 너는 오른쪽에 올라와!" */
-}
+</body>
 
-/* 캐릭터 이미지박스 */
-.ci{
-    /* 하단패딩 - 아래 설명박스와 간격 */
-    padding-bottom: 15px;
-    /* 트랜지션: 속시이지 trs */
-    transition: margin-top .4s ease-out;
-}
-/* 캐릭터박스에 마우스 오버시 .ci 마진탑변경 */
-.cat:hover .ci{
-    margin-top: -50%;
-}
-
-/* 캐릭터 이미지
-- .ci의 직계자식 img만 선택! */
-.ci > img{
-    /* 박스를 채움! */
-    width: 100%;
-}
-
-/* 캐릭터 이름박스 */
-.ci figcaption{
-    /* 글자중앙 tac 
-        text-align 속성은 글자뿐아니라
-        인라인요소는 모두 적용된다!
-        단, 크기를 가지는 블록형박스만됨!
-    */
-    text-align: center;
-
-    /* 이미지를 위로 올려 겹치게
-    하려면? 포지션을 안쓰고는 마진을
-    마이너스로 준다! */
-    margin-top: -20%;
-    /* %의 기준은? 원래박스 높이값 */
-}
-
-/* 캐릭터 이름이미지 공통 */
-.ci figcaption img {
-    /* 가로크기 w */
-    width: 40%;
-    /* 항상 값이 %단위일 경우
-    질문한다~!!! 기준이뭐지?
-    -> 여기서는 싸고 있는 
-    figcation 박스 가로크기가 기준 */
-}
-
-/* 캐릭터 이름이미지 
-첫번째이미지(진한이미지) 숨기기 */
-.ci figcaption img:first-child{
-    display: none;
-}
-/* 캐릭터박스 .cat에 오버시 */
-/* 마우스 오버시 처리1
-첫번째이미지 보이기(원래 inline) */
-.cat:hover .ci figcaption img:first-child{
-    display: inline;
-}
-/* 마우스 오버시 처리2
-마지막이미지 숨기기 */
-.cat:hover .ci figcaption img:last-child{
-    display: none;
-}
-
-/* 캐릭터 설명박스 */
-.cd{
-    /* 앱솔루트 포지션 */
-    position: absolute;
-    /* 위치에 대하여 젠틀앱솔루트! */
-    /* 가로크기 설정안한 경우 auto이며
-    이는 앱솔루트일때 부모를 찾음!
-    -> .cat 부모자격 부여! */
-
-    /* 높이값 설정 h */
-    height: 0;/* -> .cat에 마우스 오버시 250px; */
-    /* 넘치는 내용요소 자동스크롤 */
-    overflow: auto;
-    /* 
-        [ overflow 속성 ]
-        ->  넘치는 요소 처리속성
-        - visible 넘쳐도보임(기본값)
-        - hidden 넘치는 요소 숨기기
-        - scroll 스크롤바 생김
-            (x,y 두방향 모두 생김)
-            overflow-y 로 해야 y만생김
-        - auto 내용넘치면 자동으로
-            y축 스크롤만 생김
-    */
-    /* 마진 상단 mt -> 오버시 떨림문제 
-    -> .ci 하단패딩대체 */
-    /* margin-top: 15px; */
-
-    /* 배경: 색이반고윙/크 */
-    background: url(../images/eachBG.jpg) no-repeat center/cover;
-
-    /* 둥근모서리 : 왼위 부터 시계방향 */
-    border-radius: 20px 5px 5px 20px;
-
-    /* 트랜지션 : 속시이지 trs */
-    transition: height .4s ease-out;
-}
-/* 캐릭터박스에 오버시 .cd 높이값 변경 */
-.cat:hover .cd{
-    height: 250px;
-}
-
-/* 캐릭터 설명 타이틀 */
-.cd h3{
-    /* 글자체 ff - 웹폰트 */
-    font-family: 'Gugi';
-    /* 글자크기 fz - min() 최대글자크기 지정 */
-    font-size: min(1.9vw,24px);
-    /* 글자두께 보통 fwn */
-    font-weight: normal;
-    /* 패딩 : 위 15px 양쪽 1vw(최대값10px) 아래 5px */
-    padding: 15px min(1vw,10px) 5px;
-    /* 자간 ls */
-    letter-spacing: -1px;
-}
-
-/* 캐릭터 설명 문단 */
-.cd p{
-    /* 글자체 ff */
-    font-family: 'Single Day','ZCOOL KuaiLe';
-    /* 글자크기 fz */
-    font-size: min(1.3vw,18px);
-    /* 줄간격 lh */
-    line-height: 1.6;
-    /* 패딩 p */
-    padding: min(2vw,10px);
-    /* 양쪽정렬 justify */
-    text-align: justify;
-}
+</html>
