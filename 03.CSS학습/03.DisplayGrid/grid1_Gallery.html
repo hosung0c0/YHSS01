@@ -57,7 +57,7 @@
         }
 
         /* 그리드 박스 */
-        .grid{
+        .grid {
             display: grid;
 
             /* [가로 그리드 템플릿] */
@@ -71,8 +71,8 @@
             1fr 3fr 5fr 2fr; */
 
             /* 3. repeat(수치의 반복수,반복수치) */
-            grid-template-columns: 
-            repeat(5, 1fr);
+            grid-template-columns:
+                repeat(5, 1fr);
 
             /* 3번 repeat()에 대한 다양한 실험! */
             /* grid-template-columns: 
@@ -87,9 +87,18 @@
             /* [ 세로 그리드 템플릿 ] */
             /* 1. 구체적인 수치 높이값 쓴만큼 셋팅
             - 나머지는 자동높이!(자동생성값) */
-            grid-template-rows: 
-            100px 200px 300px;
+            /* grid-template-rows: 
+            100px 200px 300px; */
 
+            /* 2. 높이값 전체에서의 비를 쓴만큼 셋팅 */
+            /* grid-template-rows: 1fr 3fr 5fr 2fr; */
+
+            /* 3. repeat(수치의 반복수, 반복수치) */
+            /* grid-template-rows: repeat(4,300px); */
+
+            /* 4. 모든 높이값을 동일하게 셋팅 
+            -> grid-auto-rows (기본값 auto) */
+            /* grid-auto-rows: 400px; */
 
 
             /* [ 수평방향 간격 ] */
@@ -107,8 +116,25 @@
             outline: 2px dotted red;
         }
 
-        /* 갤러리 이미지 */
-        .grid img{
+        /* 갤러리 div박스에 가상요소 before이용하여
+        비율 만들기 */
+        .grid>div::before {
+            content: '';
+            display: block;
+            padding-top: 143%;
+        }
+
+        /* 갤러리 각박스 공통 */
+        .grid>div {
+            /* 랠러티브 부모자격 -> ::before */
+            position: relative;
+        }
+
+        /* 갤러리 이미지 - 비율패딩때문에 앱솔루트로 변경 */
+        .grid img {
+            position: absolute;
+            top: 0;
+            /* 부모는? 싸고있는 div */
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -117,6 +143,96 @@
             나간이미지부분은 자동숨김 */
 
         }
+
+        /* 상품설명박스 */
+        .grid aside {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.377);
+            display: none;
+
+            
+        }
+
+        .grid div:hover aside {
+            display: block;
+        }
+
+        /* 상품명 글자박스 */
+        .grid aside h2 {
+            /* min으로 둘중 작은값(최대크기지정) */
+            font-size: min(1.8vw, 24px);
+            font-weight: normal;
+            margin: min(1.2vw, 14px) 0 0;
+            /* 마진: 위 양쪽 아래 */
+        }
+
+
+        /* 상품가격 글자박스 */
+        .grid aside h3 {
+            font-size: min(1.4vw, 18px);
+            font-weight: normal;
+            margin: min(0.5vw, 10px) 0;
+        }
+
+
+
+        /* 1100px이하 미디어쿼리 시작 */
+        @media screen and (max-width:1100px) {
+            .grid {
+                /* 가로방향 4개 */
+                grid-template-columns: repeat(4, 2fr);
+            }
+        }
+
+        /* 1100px이하 미디어쿼리 끝 */
+
+        /* 950px이하 미디어쿼리 시작 */
+        @media screen and (max-width:950px) {
+            .grid {
+                /* 가로방향 3개 */
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* 950px이하 미디어쿼리 끝 */
+
+        /* 800px이하 미디어쿼리 시작 */
+        @media screen and (max-width:800px) {
+            .grid {
+                /* 가로방향 2개 */
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* 상품명 글자박스 */
+            .grid aside h2 {
+                /* min으로 둘중 작은값(최대크기지정) */
+                font-size: 4vw;
+                margin: 3vw 0 0;
+            }
+
+            /* 상품가격 글자박스 */
+            .grid aside h3 {
+                font-size: 3vw;
+                margin: 3vw 0;
+            }
+
+        }
+
+        /* 8000px이하 미디어쿼리 끝 */
+
+        /* 700px이하 미디어쿼리 시작 */
+        @media screen and (max-width:700px) {
+            .grid {
+                /* 가로방향 3개 */
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        /* 970px이하 미디어쿼리 끝 */
     </style>
 </head>
 
