@@ -3,259 +3,370 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>다국어 메뉴(객체의 활용)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolling Gallery</title>
     <style>
         html,
-        body,
-        h1,
-        ul {
+        body {
             margin: 0;
             padding: 0;
+            height: 100vh;
+            /* 보이는 화면 기준채우기 */
         }
 
-        /*탑영역*/
-        #top {
-            position: relative;
-            /*부모자격*/
-            width: 1000px;
-            margin: 0 auto;
-            /*outline: 1px dashed red;*/
+        body {
+            background: url(./images/space.jpg) no-repeat center/auto 200%;
         }
 
-        /*로고*/
-        #logo {
-            text-align: center;
-        }
-
-        #logo img {
-            height: 40px;
-            margin-top: 50px;
-        }
-
-        /*선택박스*/
-        .sel {
-            position: absolute;
-            right: 0;
-        }
-
-        /*GNB메뉴*/
-        #gnb {
-            width: 1000px;
-            margin-top: 30px;
-            border: 2px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        #gnb ul {
-            list-style: none;
-            /*블릿없앰*/
-            width: 800px;
-            margin: 0 auto;
-        }
-
-        #gnb ul::after {
-            content: "";
-            display: block;
-            clear: both;
-        }
-
-        #gnb li {
-            float: left;
-            width: 200px;
-        }
-
-        #gnb a {
-            display: block;
-            width: 100%;
-            color: #333;
+        /* a요소 */
+        a {
+            color: #000;
             text-decoration: none;
-            text-align: center;
-            font: bold 32px/80px Verdana, "맑은 고딕";
         }
 
-        #gnb a:hover {
-            color: #f00;
-            text-decoration: overline;
-        }
-
-        /*컨텐츠 영역*/
-        #cont {
-            width: 1000px;
+        /* 갤러리 부모박스 */
+        .wrap {
+            position: relative;
+            /* 부모자격 - #mini */
+            width: 520px;
             margin: 0 auto;
-            padding-top: 10px;
+            text-align: center;
+            padding-top: 20px;
+            /* outline: 2px dotted red; */
+        }
+
+        /* 메인이미지박스 */
+        #mbox {
+            display: inline-block;
+        }
+
+        /* 이미지 중간맞추기 */
+        #mbox img {
+            vertical-align: -79px;
+        }
+
+        /* 이미지 텍스트 출력박스 */
+        .imgtxt {
+            text-align: center;
+            color: red;
+            text-shadow: 1px 1px 1px #777;
+        }
+
+        /* 자동넘김 버튼박스 */
+        .abtn {
             text-align: center;
         }
 
-        #cont img {
-            width: 800px;
+        .abtn button {
+            font-size: 1.5rem;
         }
 
-        /*회사정보*/
-        #info {
-            width: 1000px;
-            margin: 10px auto;
-            border: 2px solid #ccc;
-            color: #333;
-            text-align: center;
-            font: bold 18px/80px Verdana, "맑은 고딕";
+        /* 처음에 멈춤버튼 숨기기 */
+        .stop {
+            display: none;
         }
 
-        #info address {
-            font-style: normal;
-            /*주소요소 기본 이탤릭 해제*/
+        /* 미니언즈 */
+        #mini {
+            position: absolute;
+            top: 80%;
+            left: -20%;
+            /* 부모는? #wrap */
+            width: 150px;
+            transform: rotate(720deg);
+            transition: all 1.5s ease-out;
+        }
+
+        /* 미니언즈 변경클래스1 */
+        #mini.on1 {
+            top: 0;
+            left: 0;
+            transform: rotate(0deg);
+        }
+
+        /* 미니언즈 변경클래스2 */
+        #mini.on2 {
+            top: 0;
+            left: 80%;
+            transform: rotate(-720deg);
         }
     </style>
+    <!-- JS코딩구역 -->
     <script>
-        ///// 전역변수 구역 ///////
-        // 언어별 메뉴 글자 셋팅하기 ///
-        const lang = {
-            //한국어
-            "ko": {
-                "메뉴": ["홈", "남성용", "여성용", "게시판"],
-                "주소": "서울시 강남구 청담동 34-22 JJ빌딩 94호, 대표: 제임스 홍"
-            },
-            //영어
-            "en": {
-                "메뉴": ["Home", "Men", "Women", "Board"],
-                "주소": "94, JJ Building, 34-22, Cheongdam-dong, Gangnam-gu, Seoul, Representative: James Hong"
-            },
-            //일본어
-            "ja": {
-                "메뉴": ["ホーム", "男性用", "女性", "掲示板"],
-                "주소": "ソウル市江南区清潭洞34-22 JJビル94号、代表：ジェームズホン"
-            },
-            //중국어
-            "ch": {
-                "메뉴": ["家", "对于男人", "女用", "公告栏"],
-                "주소": "首尔特别市江南区清潭洞34-22 JJ大厦94"
-            },
-            //스페인어
-            "es": {
-                "메뉴": ["Casa", "Hombres", "Mujeres", "Anuncios"],
-                "주소": "94, JJ Building, 34-22, Cheongdam-dong, Gangnam-gu, Seúl, Representante: James Hong"
-            }
-        }; ///////// lang 객체 ///////
-
-        ////////////// 로드구역 ////////////////////////
+        /////////////// 로드구역 //////////////////
         window.addEventListener("load", () => {
 
             console.log("로딩완료!");
 
-            // 대상선정
-            // (1) 이벤트 대상: .sel
-            const sel = document.querySelector(".sel");
+            /********************************************* 
+                [ 롤링갤러리 기능정의 ]
 
-            // (2) 변경 대상: GNB메뉴 -> #gnb a 여러개!!!
-            const menu = document.querySelectorAll("#gnb a");
-            
-            // (3) 변경 대상: 메인 이미지 -> #cont img
-            const mimg = document.querySelector("#cont img");
+                - 버튼클릭시 메인 이미지 변경하기
+                1. 오른쪽버튼 클릭시 메인이미지가
+                다음 순번의 이미지로 변경된다.
+                (단,마지막 이미지 다음이미지는 처음이미지다)
+                2. 왼쪽버튼 클릭시 메인이미지가
+                이전 순번의 이미지로 변경된다.
+                (단, 처음이미지 이전이미지는 마지막 이미지다)
 
-            // (4) 변경 대상: 하단 회사정보 -> #info address
-            const info = document.querySelector("#info address");
+                _____________________________________
 
-            // 확인
-            // console.log(sel,menu,mimg,info);
-           
-            ////////////////////////////////////////////////
-            // 1. 선택박스 선택변경시 change이벤트에 따라 변경
-            // 이벤트 대상: .sel
-            // 이벤트 종류: change
-            // 변경대상: 메뉴, 메인이미지, 하단정보
-            /////////////////////////////////////////////////
-            sel.onchange = () => { // 화살표함수일때
-            // sel.onchange = function(){ // 일반익명함수일때
+                [ 롤링갤러리 기능구현 설계 ]
 
-                // 1. 호출확인
-                // console.log("나야나!",this,event.currentTarget);
+                1. 이미지 번호를 전역변수로 설정한다.
+                2. 버튼클릭시 전역변수 이미지번호를 증감하여
+                실제로 변경될 이미지 코드의 src속성값으로
+                설정한다.
+                3. 증감시 오른쪽버튼은 ++(1씩증가)
+                    왼쪽버튼은 --(1씩감소)
+                4. 제한조건 :
+                    마지막 다음번호는 1
+                    처음 이전번호는 7
+                    (1~7까지 7개의 이미지가 있다)
+                    if문으로 조건을 체크한다!
 
-                // this키워드: 이벤트걸린 요소자신(.sel)
-                // 화살표함수를 썼다면 this는 window객체임!
-                // 자기자신은 event.currentTarget으로 구함!
 
-                // 2. 다국어 언어코드를 선택박스 선택값에서 가져옴
-                // let opt = this.value; // 일반익명함수일때
-                let opt = event.currentTarget.value; // 화살표함수
-                // console.log("선택값:",opt);
+            *********************************************/
 
-                // 3. 가져온 언어코드로 객체에서 언어를 선택함!
-                let data = lang[opt];
-                console.log("선택값:",data);
+            // 함수바깥쪽에 전역변수 선언 및 할당!
 
-                // 4. 메뉴변경하기
-                // 대상: menu변수
-                // forEach((요소/배열값,순번,객체)=>{})
-                menu.forEach((ele,idx)=>
-                    ele.innerText = data["메뉴"][idx]);
+            // 1. 이미지 번호 변수
+            let inum = 1;
+
+            // 2. 이미지설명 배열변수
+            const itxt = [
+                "노랑잉꼬가 먹이를 꼭꼭 찍어먹어요~",
+                "분홍장미가 머리칼을 너풀너풀 날려요~",
+                "백조같은 거위가 뚱하니 바라보아요~",
+                "바이킹이 너무 어지러워 토가 나와요~",
+                "눈사람이 가짜인데 진짜같아 보여요~",
+                "이 양은 보통양이 아니고 복제양 돌리예요~",
+                "잉꼬 한쌍이 영화를 찍어요~"
+            ];
+
+            // 3. 이미지 설명 글자색 배열변수
+            const tcolor = ["red", "orange", "yellow", "green", "blue", "navy", "purple"];
+
+
+            // 변경대상1: 메인이미지 - #mbox img
+            const mimg = document.querySelector("#mbox img");
+
+            // 변경대상2: 글자박스 - .imgtxt
+            const imgtxt = document.querySelector(".imgtxt");
+
+            // 처음글자 넣기 : 각 배너 데이터의 첫번째!
+            imgtxt.innerText = itxt[0];
+            imgtxt.style.color = tcolor[0];
+
+            // 이벤트 대상: 이동버튼
+            const btn = document.querySelectorAll(".btn");
+
+            // 이동버튼 클릭설정하기
+            btn.forEach(
+                (ele, idx) => ele.onclick = () => goSlide(idx)
+            ); //// forEach //////////
+
+            // 위의 실행문 원복!
+            /* 
+                (ele,idx) => {
+                    ele.onclick = () => {goSlide(idx)}}
+                ________________________________________
                 
-                // 5. 메인이미지 변경하기
-                // 대상: mimg 변수
-                // setAttribute(속성명,값) -> 속성변경 JS내장함수
-                mimg.setAttribute("src",`images/${opt}.jpg`);
-                // 메인 이미지명은 코드명과 동일함!
-                // opt는 선택된 코드명이 담겨있음!
+                function(ele,idx){
+                    ele.onclick = function(){goSlide(idx)}
+                } 
+            */
 
-                // 6. 하단주소 변경하기
-                // 대상: info변수
-                // innerText로 글자변경
-                info.innerText = data["주소"];
+            /**************************************** 
+                함수명: goSlide
+                기능: 갤러리 이미지,글자 변경하기
+            ****************************************/
+            const goSlide = dir => { // dir - 버튼구분(방향)
+                // dir값이 1이면 오른쪽, 0이면 왼쪽!
 
-            } /////////// change //////////////
+                // 1. 호출 및 전달값 확인!
+                console.log("넌 누구냐?", dir);
+
+                // 2. 버튼별 분기
+                // 2-1. 오른쪽버튼일때
+                if (dir) { // dir만 쓰면 1인경우 true!
+                    // 이미지번호 1증가
+                    inum++;
+                    // 한계값 체크(처음으로)
+                    if (inum === 8) inum = 1;
+                } //////// if /////////
+                // 2-2. 왼쪽버튼일때
+                else { /// dir값이 0일때 else에서 처리!
+                    // 이미지번호 1감소
+                    inum--;
+                    // 한계값 체크(끝으로)
+                    if (inum === 0) inum = 7;
+                } /////// else /////////
+
+                // 3. 변경대상: #mbox img -> mimg 변수
+                // 4. 변경내용: 이미지의 src속성값 변경
+                // -> 이미지파일명에 inum변수 사용!
+                mimg.src = `./images/img${inum}.jpg`;
+
+                // 5. 추가변경내용 : 글자내용 + 글자색
+                // 이미지번호보다 배열번호가 1작다!(inum-1)
+                imgtxt.innerText = itxt[inum - 1];
+                imgtxt.style.color = tcolor[inum - 1];
+
+            }; //////////// goSlide함수 //////////////
 
 
 
-        }); ////////// 로드구역 ////////////////////////
+
+            /******************************************* 
+                [ JS 타이밍 함수 : Timing Function ]
+
+                1. setInterval(함수,시간)
+                - 일정시간 간격으로 함수를 호출!
+                - 시간은 1/1000초, 단위안씀(예:1000->1초)
+                -> 인터발함수를 지울때는 변수에 담고
+                아래 함수를 호출한다!
+                ->>> clearInterval(변수)
+
+                ____________________________________
+
+                1. setTimeout(함수,시간)
+                - 일정시간 후 한번만 함수를 호출!
+                - 시간은 1/1000초, 단위안씀
+                -> 타임아웃을 지울때는 변수에 담고
+                아래 함수를 호출한다!
+                ->>> clearTimeout(변수)
+
+                ******************************
+
+                [ JS 클래스 관련 내장함수 ]
+                classList 객체
+                -> 클래스를 요소에 넣거나 빼거나 클래스여부 판별
+                ((관련메서드))
+                1. add(클래스명) : 클래스추가
+                2. remove(클래스명) : 클래스제거
+                3. toggle(클래스명) : 클래스추가/제거
+                4. contains(클래스명) : 클래스명 일치시 true
+                5. replace(이전클래스명,변경클래스명)
+                    : 특정클래스를 다른 클래스로 변경
+
+                -> 클래스 추가나 제거시 콤마로 구분하여
+                여러개의 클래스를 추가하거나 제거할 수 있다!
+                예) 요소.classList.add("tt","cc","dd")
+
+            *******************************************/
+
+            // 자동넘김 버튼 클릭시 인터발함수 셋팅하기!! ///
+            // 이벤트 대상: .abtn button
+            const abtn =
+                document.querySelectorAll(".abtn button");
+            // console.log(abtn);
+
+            // 인터발용변수
+            let autoI;
+
+            // 버튼에 클릭이벤트 설정하기!
+            for (let x of abtn) {
+
+                x.onclick = () => {
+                    // 클릭된요소의 클래스이름 여부
+                    let isB = x.classList.contains("start");
+                    // classList.contains(클래스명)
+                    // -> 클래스명이 맞으면 true
+                    console.log("자동넘김버튼인가?", isB);
+
+                    // 분기문 ////////
+                    if (isB) { // true이면 "자동넘김"
+                        // 인터발 주기: 1초간격 goSlide(1)호출!
+                        // 멈추기위해 변수에 인터발할당!
+                        autoI = setInterval(
+                            () => goSlide(1), 1000);
+
+                    } //////// if ///////////
+                    else{ // "멈춤"버튼
+                        // 인터발지우기
+                        clearInterval(autoI);
+                    } //////// else //////////
+                    
+                    // 자기자신버튼 없애기
+                    x.style.display = "none";
+                    // "멈춤"/"자동넘김"버튼보이기
+                    abtn[isB?1:0].style.display = "inline-block";
+                    // isB?1:0 의 해석
+                    // 삼항연산자 -> 비?집:놀이동산
+                    // isB가 true이면 즉, "자동넘김"이면
+                    // 1 즉 두번째 버튼출력
+                    // 아니면 0 즉, 첫번째 버튼출력
+
+                    // console.log("autoI변수:",autoI);
+
+                }; //////// click /////////
+
+            } //////////// for of //////////////
+
+
+            // 타임아웃 함수로 미니언즈 애니하기!!! ////
+            // 원리: 미리셋팅된 클래스를 미니언즈요소에
+            // 일정시간 후 넣고/빼고/넣기를 해준다!
+            // 변경대상: #mini
+            const mini = document.querySelector("#mini");
+
+            // 2초후에 미니언즈 class "on1"넣기
+            setTimeout(() => {
+                mini.classList.add("on1");
+                // mini.classList.add("on1","바보야","멍멍아");
+            }, 2000);
+
+            // 4초후에 미니언즈 class "on1"빼기
+            setTimeout(() => {
+                mini.classList.remove("on1");
+                // mini.classList.remove("on1","멍멍아");
+            }, 4000);
+
+            // 6초후에 미니언즈 class "on2"넣기
+            setTimeout(() => {
+                mini.classList.toggle("on2");
+            }, 6000);
+
+            // 8초후에 미니언즈 class "on1"넣기 / "on2"빼기
+            setTimeout(() => {
+                mini.classList.replace("on2","on1");
+            }, 8000);
+
+
+        }); /////////// 로드구역 ///////////////////
     </script>
-
-
 </head>
 
 <body>
-    <!--탑영역-->
-    <header id="top">
-        <!--로고-->
-        <h1 id="logo">
-            <img src="images/logoM.png" alt="로고">
-        </h1>
-        <!--다국어선택옵션박스-->
-        <select class="sel">
-            <option value="ko">Korea</option>
-            <option value="en">English</option>
-            <option value="ja">Japanese</option>
-            <option value="ch">Chinese</option>
-            <option value="es">Spanish</option>
-        </select>
-        <!--GNB메뉴-->
-        <nav id="gnb">
-            <ul>
-                <li>
-                    <a href="">홈</a>
-                </li>
-                <li>
-                    <a href="">남성용</a>
-                </li>
-                <li>
-                    <a href="">여성용</a>
-                </li>
-                <li>
-                    <a href="">게시판</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <!--컨텐츠영역-->
-    <section id="cont">
-        <img src="images/ko.jpg" alt="fashion">
-    </section>
-    <!--회사정보영역-->
-    <footer id="info">
-        <address>
-            서울시 강남구 청담동 34-22 JJ빌딩 94호, 대표: 제임스 홍
-        </address>
-    </footer>
+    <!-- 갤러리 박스 -->
+    <div class="wrap">
+        <!-- 타이틀 -->
+        <h1>Rolling Gallery</h1>
+        <!-- 왼쪽이동버튼 -->
+        <a href="#" class="btn lb">
+            <img src="./images/left_btn.png" alt="왼쪽버튼">
+        </a>
+        <!-- 메인이미지박스 -->
+        <div id="mbox">
+            <img src="./images/img1.jpg" alt="메인이미지">
+        </div>
+        <!-- 오른쪽이동버튼 -->
+        <a href="#" class="btn rb">
+            <img src="./images/right_btn.png" alt="오른쪽버튼">
+        </a>
+        <!-- 미니언즈 -->
+        <img src="./images/Minions.png" alt="미니언즈" id="mini">
+    </div>
 
+    <!-- 이미지별 설명 텍스트 출력박스 -->
+    <h2 class="imgtxt"></h2>
 
-
+    <!-- 자동넘김 버튼박스 -->
+    <div class="abtn">
+        <button class="start">자동넘김</button>
+        <button class="stop">멈춤</button>
+    </div>
 
 </body>
 
