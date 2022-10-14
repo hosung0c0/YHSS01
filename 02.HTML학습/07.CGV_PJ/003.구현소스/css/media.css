@@ -116,8 +116,8 @@
 
     /* 2-2.예고편 선택메뉴 */
     .mlist {
-        bottom: 2%;
-        width: 90%;
+        bottom: 0;
+        width: 85%;
     }
 
     /* 선택메뉴 ul */
