@@ -3,7 +3,7 @@
 //////// 로드구역 //////////
 window.addEventListener("DOMContentLoaded",()=>{
 
-    // console.log("로딩완료!");
+    console.log("로딩완료!");
 
     /// 링크 대상: .top a -> .gnb a + .tmenu a + logo a
     const link = document.querySelectorAll(".top a");
