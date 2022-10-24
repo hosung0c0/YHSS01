@@ -12,8 +12,76 @@
 			width: 100%;
 			height: 100%;
 		}
+
+		.nav1 {
+			/* 영역선택 안되게함 */
+			user-select: none;
+		}
 	</style>
-	
+	<!-- 제이쿼리 라이브러리 -->
+	<script src="js/jquery-3.6.1.min.js"></script>
+	<script>
+		$(() => { /////////////// jQB ///////////////
+
+			// 글자변경
+			$(".nav1 li").css({
+				fontSize: "42px",
+				textShadow: "",
+				cursor: "pointer",
+				width: "300px",
+				whiteSpace: "nowrap"
+			});
+
+			// 1차 미션: .nav1 아래 li를 클릭시 클릭된 li의 
+			//글자크기를 5px씩 커지게 하시오. 동시에 글자색을 
+			//무지개색 순서로 차례로 변경되게 하시오.
+
+			// 무지개색 변수
+			const rcolor = ["red", "orange", "yellow", "green", "blue", "navy", "purple"]
+
+			$(".nav1").click(e => { // e - 이벤트전달값
+				// 클릭된 자신은 this지만
+				// 화살표함수는 e(event).currentTarget
+				$(e.currentTarget).css({
+					fontSize: "+=5px", // += 기존크기에 더함
+					color: rcolor[cseq]
+				}); /////// css ///////
+				// 무지개 색 순번증가
+				cseq++;
+				if (cseq === 7) cseq = 0; // 한계수
+
+			}); /////////// click ////////////
+
+			//// 2차미션 : 선택박스의 선택을 변경하는 순간 
+			//선택된 이름의 배경색을 무지개색 순번으로 변경하시오. 
+			//동시에 배경이미지를 body에 해당이름과 매칭하여 넣으시오.
+
+			// 이벤트 대상
+			$("#selnum").change(function(){
+				// 선택값읽어오기
+				let opt = $(this).val();
+				// val() 선택요소의 값을 읽어오는 메서드
+				console.log(opt);
+
+				// 초기화(모두 투명)
+				$(".nav1 li").css({backgroundColor: "transparent"});
+
+				// 순번을 사용하여 .nav1 li의 같은 순번배경색 변경
+				// :eq(순번) -> 제이쿼리 전용
+				$(`.nav1 li:eq(${opt})`)
+				.css({
+					background:"red"
+				})
+				// 배경이미지 넣기
+				$("body").css({
+					background: `url(img/${opt}.jpg) no-repeat center/cover`
+				})
+				
+			}); ////////// change //////////
+
+
+		}); /////////////// jQB ///////////////
+	</script>
 
 </head>
 

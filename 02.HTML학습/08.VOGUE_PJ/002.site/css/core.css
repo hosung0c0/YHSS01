@@ -34,9 +34,9 @@ font-family: 'Roboto Condensed', sans-serif;
 */
 
 /* 공사중 표시 */
-body * {
+/* body * {
     outline: 1px dashed gray;
-}
+} */
 
 /************* 2. 공통 class *************/
 
@@ -126,7 +126,7 @@ body * {
   검정색에서 투명으로 변화함! */
     background-image: linear-gradient(
         to top,
-        rgba(0, 0, 0, 0.829),
+        rgba(0, 0, 0, 0.839),
         rgba(0, 0, 0, 0)
     );
 }
