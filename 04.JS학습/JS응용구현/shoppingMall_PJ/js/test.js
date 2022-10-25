@@ -48,21 +48,21 @@ function loadFn() {
     const slide = document.querySelector("#slide");
     
     abtn[1].onclick = ()=>{
- 
+
         slide.style.left = "-100%";
         slide.style.transition = ".8s";
-        // 0.8초 후 맨앞li 잘라서 맨뒤로 이동
+        // 0.8초후 맨앞li 잘라서 맨뒤로 이동!
         setTimeout(() => {
-            // 1. 맨앞 li 잘라서 맨뒤로 이동
+            // 1. 맨앞li 잘라서 맨뒤로 이동!
             slide.appendChild(
                 slide.querySelectorAll("li")[0])
-            // 2. left값 0으로 초기화
+            // 2. left값 0으로 초기화!
             slide.style.left = "0";
-            // 3. 트랜지션 없애기
+            /* 3. 트랜지션 없애기 */
             slide.style.transition = "none";
         }, 800);
     }
-    
+
     
 } //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
