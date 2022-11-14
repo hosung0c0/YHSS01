@@ -1,4 +1,6 @@
-
+const {
+    func
+} = require("prop-types");
 
 // 미니언즈 좀비 탈출 애니 구현 JS - main.js
 $(() => {
@@ -111,8 +113,7 @@ $(() => {
 
         // 미니언즈 위치이동하기 애니메이션
         // 대상: .mi -> mi변수
-        mi.animate(
-            {
+        mi.animate({
                 top: pos[0] + "px",
                 left: pos[1] + "px",
             },
@@ -162,7 +163,9 @@ $(() => {
 
                             // 좀비가 나타난 후 메시지 보이기
                             msg.html("악!;;;; 좀비!<br>어서피하자!") // 텍스트 변경
-                                .css({ left: "-87%" }) // 위치변경
+                                .css({
+                                    left: "-87%"
+                                }) // 위치변경
                                 .fadeIn(300); // 나타나기
 
                             // 다음버튼 보이기
@@ -249,8 +252,7 @@ $(() => {
                         // 달겨든다!
                         bd.eq(7)
                             .find(".mz")
-                            .animate(
-                                {
+                            .animate({
                                     // 윗층으로 올라옴
                                     bottom: bd.eq(7).height() + "px",
                                     // li 높이값 만큼 bottom을 올려준다!
@@ -259,8 +261,7 @@ $(() => {
                                 "easeOutElastic"
                             )
                             .delay(500) // 기다림
-                            .animate(
-                                {
+                            .animate({
                                     // 달겨들기
                                     right: bd.eq(7).width() * 1.2 + "px",
                                     // li 가로크기 만큼 right값 변경(보정*1.2)
@@ -269,7 +270,9 @@ $(() => {
                                 "easeOutBounce",
                                 () => {
                                     // 물린후 대사
-                                    msg.css({ left: "-110%" })
+                                    msg.css({
+                                            left: "-110%"
+                                        })
                                         .html(`아~악! 물렸다!<br>
                                     어서 치료주사방으로!`);
 
@@ -277,7 +280,9 @@ $(() => {
                                     setTimeout(() => {
                                         mi.find("img")
                                             .attr("src", "images/mz1.png")
-                                            .css({ filter: "grayscale(100%)" });
+                                            .css({
+                                                filter: "grayscale(100%)"
+                                            });
                                         // 흑백변경: 필터 그레이스케일
 
                                         // 다음버튼 보이기
@@ -308,11 +313,15 @@ $(() => {
                     // 이미지변경
                     mi.find("img")
                         .attr("src", "images/m2.png")
-                        .css({ filter: "grayscale(0)" }); //다시컬러!
+                        .css({
+                            filter: "grayscale(0)"
+                        }); //다시컬러!
 
                     // 대사
                     msg.html("이제 조그만 더<br>가면 탈출이닷!")
-                        .css({ left: "-84%" })
+                        .css({
+                            left: "-84%"
+                        })
                         .fadeIn(200);
 
                     // 주사기 없애기
@@ -368,8 +377,7 @@ $(() => {
                 bd.eq(1)
                     .find(".mz")
                     .fadeIn(300)
-                    .animate(
-                        {
+                    .animate({
                             right: bd.eq(1).width() + "px",
                         },
                         3000,
@@ -378,8 +386,7 @@ $(() => {
 
                 // 헬기등장
                 $(".heli")
-                    .animate(
-                        {
+                    .animate({
                             left: "20%",
                         },
                         4000,
@@ -393,8 +400,7 @@ $(() => {
                         }
                     )
                     .delay(500) // 0.5초 쉬었다가
-                    .animate(
-                        {
+                    .animate({
                             // 다시 오른쪽 끝으로 이동
                             left: "70%",
                         },
@@ -406,8 +412,7 @@ $(() => {
                         }
                     )
                     .delay(300)
-                    .animate(
-                        {
+                    .animate({
                             // 아주 천천히 오른쪽 바깥으로 나감!
                             left: "100%",
                         },
@@ -415,53 +420,11 @@ $(() => {
                         "linear", // 등속도
                         () => {
                             // 최종마무리구역
-
-                            // 간판 떨어뜨리기
-                            // 1단계 : 중간까지 떨어짐
-                            // -> 간판에 class "on"주기
-                            let tit = $(".tit");
-                            tit.addClass("on");
-                            setTimeout(
-                                // -> 간판에 class "on2"주기
-                                ()=>tit.addClass("on2")
-                            , 3000);
-
-                            // 빌딩 무너뜨리기
-                            // 간판 떨어진 후 실행(6초)
-                            setTimeout(() => {
-                                bd.parent().addClass("on")
-                                // parent() 부모요소인 .building
-                            }, 6000);
                         }
-                    ); ///////// animate /////////////
+                    );
             };
 
             // 액션함수호출
             actMini(this, 0, fn);
-        }); ////////// "헬기를 호출" 버튼 클릭 마무리 //////////
-
-        // 간판에 마우스 오버시/아웃시 색상변경하기
-        // hover(함수1,함수2)
-        // - 함수1은 오버시, 함수2는 아웃시 실행
-        $(".tit").hover(
-            function(){ // over
-                $(this).css({
-                    backgroundColor:"blue",
-                    color:"cyan"
-                }); /// css ///
-            },
-            function(){ // out
-                $(this).css({
-                    backgroundColor:"pink",
-                    color:"yellow"
-                }); /// css ///
-            });
-
-        
-
-
-
-
-
-
+        });
 }); /////////////// jQB ////////////////////
